@@ -4,7 +4,7 @@ const SubtleBackground = () => {
     // Generate random positions for particles to avoid hydration mismatches or re-renders
     // Generate random positions for particles to avoid hydration mismatches or re-renders
     const particles = useMemo(() => {
-        return Array.from({ length: 5 }).map((_, i) => ({
+        return Array.from({ length: 3 }).map((_, i) => ({
             id: i,
             left: `${Math.random() * 100}%`,
             animationDuration: '35s', // Standardized Slow Speed
@@ -18,8 +18,8 @@ const SubtleBackground = () => {
     const ingredientParticles = useMemo(() => {
         // Specific user-requested emojis: Burger, Kebab/Doner, Chicken, Fries, Wrap/Doner, Salad, Potato
         const ingredients = ['🍔', '🥙', '🍗', '🍟', '🌯', '🥗', '🥔'];
-        // Increase count to 8 so most items likely appear
-        return Array.from({ length: 8 }).map((_, i) => ({
+        // Reduced count to 4 for a cleaner look
+        return Array.from({ length: 4 }).map((_, i) => ({
             id: i,
             emoji: ingredients[Math.floor(Math.random() * ingredients.length)],
             left: `${Math.random() * 100}%`,
@@ -45,6 +45,14 @@ const SubtleBackground = () => {
 
     return (
         <div className="fixed inset-0 w-full h-full -z-10 bg-[#0a0a0a] overflow-hidden pointer-events-none">
+            {/* 
+        Subtle Noise Texture 
+        - Adds grain/texture to the background
+      */}
+            <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
+                style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E")` }}
+            ></div>
+
             {/* 
         Base Gradient 
         - Dark center, slight green vignette for "Herbal" feel

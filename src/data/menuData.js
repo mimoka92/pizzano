@@ -62,7 +62,7 @@ export const menuData = {
                 { name: "Chips", price: "3£", largePrice: "3.50£" },
                 { name: "Chips & Cheese", price: "3.50£", largePrice: "4£" }, // Calculated from "with cheese" notes
                 { name: "Curly Fries", price: "4.50£" },
-                { name: "Potato Wedges", price: "4.50£" },
+                { name: "Potato Wedges", price: "4£" },
                 { name: "Scampi with Chips", price: "7.50£" },
                 { name: "Chilli Con Carne With Chips", price: "7.50£" },
                 { name: "Mozzarella Cheese Sticks (6pcs)", price: "5.50£" },
