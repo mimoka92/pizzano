@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SubtleBackground from './components/SubtleBackground';
 import MenuSection from './components/MenuSection';
-import FullScreenButton from './components/FullScreenButton';
 import { menuData } from './data/menuData';
 
 function App() {
@@ -20,7 +19,6 @@ function App() {
   return (
     <div className="min-h-screen w-screen relative text-white font-sans select-none overflow-x-hidden md:h-screen md:overflow-hidden">
       <SubtleBackground />
-      <FullScreenButton />
 
       {/* 
          TV TRANSFORM CONTAINER
@@ -36,13 +34,16 @@ function App() {
             <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter text-white drop-shadow-[0_0_15px_rgba(0,230,118,0.8)] leading-none flex justify-center"
               style={{ textShadow: '4px 4px 0px #000, 0 0 20px #00e676' }}>
               {'Pizzano'.split('').map((char, index) => (
-                <span key={index} style={{ animation: `wave 3s ease-in-out infinite`, animationDelay: `${index * 0.2}s`, display: 'inline-block' }}>
+                <span key={index} style={{ animation: `wave 4.5s ease-in-out infinite`, animationDelay: `${index * 0.3}s`, display: 'inline-block' }}>
                   {char}
                 </span>
               ))}
             </h1>
             <span className="text-2xl md:text-3xl text-white font-handwriting tracking-wide block relative z-10 -mt-2 rotate-[-2deg]"
-              style={{ textShadow: '2px 2px 0px #000' }}>
+              style={{
+                textShadow: '2px 2px 0px #000',
+                animation: 'pulse-scale 2s ease-in-out infinite'
+              }}>
               Made with love
             </span>
           </div>
@@ -52,6 +53,10 @@ function App() {
              @keyframes wave {
                 0%, 100% { transform: translateY(0); }
                 50% { transform: translateY(-15px); }
+             }
+             @keyframes pulse-scale {
+                0%, 100% { transform: scale(1) rotate(-2deg); }
+                50% { transform: scale(1.1) rotate(-2deg); }
              }
            `}</style>
         </header>
