@@ -18,13 +18,13 @@ const SubtleBackground = () => {
     const ingredientParticles = useMemo(() => {
         // Specific user-requested emojis: Burger, Kebab/Doner, Chicken, Fries, Wrap/Doner, Salad, Potato
         const ingredients = ['🍔', '🥙', '🍗', '🍟', '🌯', '🥗', '🥔'];
-        // Increase count to 7 so most items likely appear
-        return Array.from({ length: 7 }).map((_, i) => ({
+        // Increase count to 8 so most items likely appear
+        return Array.from({ length: 8 }).map((_, i) => ({
             id: i,
             emoji: ingredients[Math.floor(Math.random() * ingredients.length)],
             left: `${Math.random() * 100}%`,
-            animationDuration: '40s', // Even slower
-            animationDelay: `-${Math.random() * 40}s`,
+            animationDuration: `${25 + Math.random() * 25}s`, // Varied speed for better scattering
+            animationDelay: `-${Math.random() * 45}s`,
             opacity: 0.15 + Math.random() * 0.2, // Much lower opacity (more transparent)
             size: 50 + Math.random() * 40, // Significantly bigger (50px - 90px)
             rotation: Math.random() * 360,
