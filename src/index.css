@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@layer theme {
+  :root {
+    --color-pizzano-green: #00e676;
+    /* Vibrant Green */
+    --color-pizzano-green-dim: #00a854;
+    /* Darker Green */
+    --color-pizzano-black: #0a0a0a;
+    --color-pizzano-white: #ffffff;
+
+    /* Mapping old vars to new theme to prevent breaks, or just defining new ones */
+    --color-flame-red: #00e676;
+    /* Map red to green */
+    --color-flame-orange: #69f0ae;
+    /* Map orange to light green */
+    --color-flame-yellow: #b9f6ca;
+    /* Map yellow to very light green */
+    --font-handwriting: 'Dancing Script', cursive;
+  }
+}
+
+body {
+  background-color: var(--color-pizzano-black);
+  color: var(--color-pizzano-white);
+  font-family: 'Inter', system-ui, sans-serif;
+}
