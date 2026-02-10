@@ -1,4 +1,4 @@
-const MenuItem = ({ name, price, largePrice, priceNote, isTabular = false, showChipsPrice = false }) => {
+const MenuItem = ({ name, price, largePrice, priceNote, isTabular = false, showChipsPrice = false, compact = false }) => {
 
     const formatPrice = (p) => {
         if (!p || p === '-') return '';
@@ -16,7 +16,7 @@ const MenuItem = ({ name, price, largePrice, priceNote, isTabular = false, showC
         : '';
 
     return (
-        <div className={`flex justify-between items-baseline py-1 md:py-[1px] ${isTabular ? 'border-b border-white/10' : 'border-b border-white/10'} last:border-0`}>
+        <div className={`flex justify-between items-baseline ${compact ? 'py-1 md:py-0' : 'py-2 md:py-2.5'} ${isTabular ? 'border-b border-white/25' : 'border-b border-white/25'} last:border-0`}>
             {/* Item Name */}
             <span className="text-base md:text-[0.85rem] font-bold tracking-tight uppercase leading-none drop-shadow-sm text-white/95 truncate pr-1">
                 {name}
@@ -24,14 +24,14 @@ const MenuItem = ({ name, price, largePrice, priceNote, isTabular = false, showC
 
             {/* Prices */}
             {isTabular ? (
-                <div className="flex w-28 md:w-24 justify-end font-black text-lg md:text-[0.95rem] text-white tabular-nums shrink-0 leading-none">
-                    <div className="w-14 md:w-12 text-right text-pizzano-green">{displayPrice}</div>
-                    <div className="w-14 md:w-12 text-right text-white">{displayLarge}</div>
+                <div className="flex w-40 justify-end font-black text-lg md:text-[0.95rem] text-white tabular-nums shrink-0 leading-none">
+                    <div className="w-14 text-right text-pizzano-green">{displayPrice}</div>
+                    <div className="w-14 text-right text-white">{displayLarge}</div>
                 </div>
             ) : showChipsPrice ? (
-                <div className="flex w-28 md:w-24 justify-end font-black text-lg md:text-[0.95rem] text-pizzano-green tabular-nums shrink-0 leading-none">
-                    <div className="w-14 md:w-12 text-right">{displayPrice}</div>
-                    <div className="w-14 md:w-12 text-right text-white">{displayChipsPrice || ''}</div>
+                <div className="flex w-40 justify-end font-black text-lg md:text-[0.95rem] text-pizzano-green tabular-nums shrink-0 leading-none">
+                    <div className="w-14 text-right">{displayPrice}</div>
+                    <div className="w-14 text-right text-white">{displayChipsPrice || ''}</div>
                 </div>
             ) : (
                 <div className="flex justify-end font-black text-lg md:text-[0.95rem] text-pizzano-green tabular-nums shrink-0 leading-none">

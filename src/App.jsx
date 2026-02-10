@@ -68,22 +68,24 @@ function App() {
             {/* --------------------- */}
             {/* LEFT COLUMN - BURGERS */}
             {/* --------------------- */}
-            <div className="flex flex-col md:h-full bg-black/60 backdrop-blur-sm rounded-xl border border-white/10 p-5 md:p-6 shadow-2xl order-1">
-              <h2 className="text-4xl md:text-3xl font-black text-pizzano-green mb-2 md:mb-1 border-b-2 border-green-700 uppercase tracking-tighter shrink-0">
-                BURGERS
-              </h2>
-              <div className="flex justify-end text-green-200 font-bold text-xs md:text-[10px] mb-2 md:mb-1 pr-1 tracking-wider border-b border-white/10 pb-0.5 shrink-0">
-                <div className="w-14 md:w-12 text-right"></div>
-                <div className="w-14 md:w-12 text-right">+CHIPS</div>
+            <div className="flex flex-col md:h-[calc(100%+7rem)] bg-black/60 backdrop-blur-sm rounded-xl border border-white/10 p-5 md:p-6 shadow-2xl order-1 md:-mt-28">
+              <div className="flex justify-between items-end border-b-2 border-green-700 mb-2 md:mb-1 shrink-0">
+                <h2 className="text-4xl md:text-3xl font-black text-pizzano-green uppercase tracking-tighter">
+                  BURGERS
+                </h2>
+                <div className="flex justify-end text-green-200 font-bold text-xs md:text-[10px] w-40 pb-0.5 pr-1 tracking-wider">
+                  <div className="w-14 text-right"></div>
+                  <div className="w-14 text-right">+CHIPS</div>
+                </div>
               </div>
 
-              <div className="flex flex-col justify-evenly space-y-2 md:space-y-0 md:flex-grow">
+              <div className="flex flex-col justify-evenly space-y-2 md:space-y-1 md:flex-grow">
                 {redColumnItems.items.map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-baseline border-b border-white/10 pb-1 md:pb-[1px] last:border-0 last:pb-0">
+                  <div key={idx} className="flex justify-between items-baseline border-b border-white/25 pb-1 md:pb-[1px] last:border-0 last:pb-0">
                     <span className="text-base md:text-[0.9rem] font-bold uppercase tracking-tight text-white/95 truncate pr-1">{item.name}</span>
-                    <div className="flex w-28 md:w-24 justify-end font-black text-lg md:text-[1rem] text-pizzano-green tabular-nums shrink-0">
-                      <div className="w-14 md:w-12 text-right">{formatPrice(item.price)}</div>
-                      <div className="w-14 md:w-12 text-right text-white">
+                    <div className="flex w-40 justify-end font-black text-lg md:text-[1rem] text-pizzano-green tabular-nums shrink-0">
+                      <div className="w-14 text-right">{formatPrice(item.price)}</div>
+                      <div className="w-14 text-right text-white">
                         {item.priceNote && item.priceNote.includes('with chips')
                           ? formatPrice(item.priceNote.match(/([\d.]+)/)[1])
                           : ''}
@@ -101,23 +103,23 @@ function App() {
 
               {/* KEBABS */}
               <div className="flex-grow flex flex-col">
-                <div className="flex justify-between items-end border-b-2 border-pizzano-green mb-2 md:mb-1 shrink-0">
+                <div className="flex justify-between items-end border-b-2 border-green-700 mb-2 md:mb-1 shrink-0">
                   <h2 className="text-3xl md:text-2xl font-black text-pizzano-green uppercase tracking-tighter">KEBABS</h2>
-                  <div className="flex w-28 md:w-24 justify-end text-xs md:text-[10px] font-bold text-white/80 pb-0.5">
-                    <div className="w-14 md:w-12 text-right">SML</div>
-                    <div className="w-14 md:w-12 text-right">LRG</div>
+                  <div className="flex w-40 justify-end text-xs md:text-[10px] font-bold text-white/80 pb-0.5">
+                    <div className="w-14 text-right">SML</div>
+                    <div className="w-14 text-right">LRG</div>
                   </div>
                 </div>
-                <div className="flex flex-col justify-evenly space-y-2 md:space-y-0 md:flex-grow">
+                <div className="flex flex-col justify-evenly space-y-2 md:space-y-1 md:flex-grow">
                   {menuData.categories.find(c => c.title === 'KEBABS').items.map((item, i) => {
                     const small = item.price.includes('Small') ? item.price.match(/Small\s*([\d.]+)/)?.[1] : item.price;
                     const large = item.largePrice || (item.price.includes('Large') ? item.price.match(/Large\s*([\d.]+)/)?.[1] : null);
                     return (
-                      <div key={i} className="flex justify-between items-baseline border-b border-white/10 pb-1 md:pb-[1px] last:border-0">
+                      <div key={i} className="flex justify-between items-baseline border-b border-white/25 pb-1 md:pb-[1px] last:border-0">
                         <span className="text-base md:text-[0.85rem] font-bold uppercase tracking-tight text-white/95">{item.name}</span>
-                        <div className="flex w-28 md:w-24 justify-end font-black text-lg md:text-[0.95rem] text-white tabular-nums">
-                          <div className="w-14 md:w-12 text-right text-pizzano-green">{formatPrice(small)}</div>
-                          <div className="w-14 md:w-12 text-right text-white">{formatPrice(large)}</div>
+                        <div className="flex w-40 justify-end font-black text-lg md:text-[0.95rem] text-white tabular-nums">
+                          <div className="w-14 text-right text-pizzano-green">{formatPrice(small)}</div>
+                          <div className="w-14 text-right text-white">{formatPrice(large)}</div>
                         </div>
                       </div>
                     )
@@ -127,20 +129,20 @@ function App() {
 
               {/* CHICKEN - Custom Render */}
               <div className="shrink-0">
-                <div className="flex justify-between items-end border-b-2 border-pizzano-green mb-2 md:mb-1 shrink-0">
+                <div className="flex justify-between items-end border-b-2 border-green-700 mb-2 md:mb-1 shrink-0">
                   <h2 className="text-3xl md:text-2xl font-black text-pizzano-green uppercase tracking-tighter">CHICKEN</h2>
-                  <div className="flex justify-end text-green-200 font-bold text-xs md:text-[10px] mb-0.5 pr-1 tracking-wider">
-                    <div className="w-14 md:w-12 text-right"></div>
-                    <div className="w-14 md:w-12 text-right">+CHIPS</div>
+                  <div className="flex justify-end text-green-200 font-bold text-xs md:text-[10px] w-40 mb-0.5 pr-1 tracking-wider">
+                    <div className="w-14 text-right"></div>
+                    <div className="w-14 text-right">+CHIPS</div>
                   </div>
                 </div>
-                <div className="flex flex-col space-y-1 md:space-y-[1px]">
+                <div className="flex flex-col space-y-1 md:space-y-1">
                   {menuData.categories.find(c => c.title === 'CHICKEN').items.map((item, i) => (
-                    <div key={i} className="flex justify-between items-baseline border-b border-white/10 pb-1 md:pb-[1px] last:border-0">
+                    <div key={i} className="flex justify-between items-baseline border-b border-white/25 pb-1 md:pb-[1px] last:border-0">
                       <span className="text-base md:text-[0.85rem] font-bold uppercase tracking-tight text-white/95 truncate pr-1">{item.name}</span>
-                      <div className="flex w-28 md:w-24 justify-end font-black text-lg md:text-[0.95rem] text-pizzano-green tabular-nums shrink-0">
-                        <div className="w-14 md:w-12 text-right">{formatPrice(item.price)}</div>
-                        <div className="w-14 md:w-12 text-right text-white">
+                      <div className="flex w-40 justify-end font-black text-lg md:text-[0.95rem] text-pizzano-green tabular-nums shrink-0">
+                        <div className="w-14 text-right">{formatPrice(item.price)}</div>
+                        <div className="w-14 text-right text-white">
                           {item.priceNote && item.priceNote.includes('with chips')
                             ? formatPrice(item.priceNote.match(/([\d.]+)/)[1])
                             : ''}
@@ -164,7 +166,7 @@ function App() {
             {/* --------------------- */}
             {/* RIGHT COLUMN - EXTRAS & WRAPS */}
             {/* --------------------- */}
-            <div className="flex flex-col md:h-full bg-black/60 backdrop-blur-sm rounded-xl border border-white/10 p-5 md:p-6 shadow-2xl justify-between order-3">
+            <div className="flex flex-col md:h-[calc(100%+7rem)] bg-black/60 backdrop-blur-sm rounded-xl border border-white/10 p-5 md:p-6 shadow-2xl justify-start space-y-12 order-3 md:-mt-28">
               <div className="flex-grow flex flex-col">
                 <MenuSection
                   title="EXTRAS"
@@ -172,11 +174,12 @@ function App() {
                   variant="default"
                   showHeaders={true}
                   headers={['SML', 'LRG']}
+                  compact={true}
                 />
               </div>
 
               {/* MOVED: Wraps to Right Column (Bottom) */}
-              <div className="shrink-0 mt-6 md:mt-2">
+              <div className="shrink-0">
                 <MenuSection title="WRAPS" items={menuData.categories.find(c => c.title === 'WRAPS').items} variant="default" />
               </div>
             </div>
