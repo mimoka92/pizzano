@@ -4,6 +4,7 @@ import MenuSection from './components/MenuSection';
 import PageNavigator from './components/PageNavigator';
 import { menuData } from './data/menuData';
 import { menuData2 } from './data/menuData2';
+import logoImg from './assets/logo.png';
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -68,22 +69,35 @@ function App() {
 
         {/* Header - Sequence: Appears after panels */}
         <header className={`text-center py-6 md:pb-4 md:pt-0 shrink-0 w-full mb-4 md:mb-2 relative z-20 transition-all duration-1000 cubic-bezier(0.34, 1.56, 0.64, 1) ${isLogoVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 -translate-y-20 scale-50'}`}>
-          <div className="relative inline-block">
-            <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter text-white drop-shadow-[0_0_15px_rgba(0,230,118,0.8)] leading-none flex justify-center"
-              style={{ textShadow: '4px 4px 0px #000, 0 0 20px #00e676' }}>
-              {'Pizzano'.split('').map((char, index) => (
-                <span key={index} style={{ animation: `wave 4.5s ease-in-out infinite`, animationDelay: `${index * 0.3}s`, display: 'inline-block' }}>
-                  {char}
+          <div className="relative inline-block w-full">
+            {displayPage === 1 ? (
+              <div className="inline-block">
+                <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter text-white drop-shadow-[0_0_15px_rgba(0,230,118,0.8)] leading-none flex justify-center"
+                  style={{ textShadow: '4px 4px 0px #000, 0 0 20px #00e676' }}>
+                  {'Pizzano'.split('').map((char, index) => (
+                    <span key={index} style={{ animation: `wave 4.5s ease-in-out infinite`, animationDelay: `${index * 0.3}s`, display: 'inline-block' }}>
+                      {char}
+                    </span>
+                  ))}
+                </h1>
+                <span className="text-2xl md:text-3xl text-white font-handwriting tracking-wide block relative z-10 -mt-2 rotate-[-2deg]"
+                  style={{
+                    textShadow: '2px 2px 0px #000',
+                    animation: 'pulse-scale 2s ease-in-out infinite'
+                  }}>
+                  Made with love
                 </span>
-              ))}
-            </h1>
-            <span className="text-2xl md:text-3xl text-white font-handwriting tracking-wide block relative z-10 -mt-2 rotate-[-2deg]"
-              style={{
-                textShadow: '2px 2px 0px #000',
-                animation: 'pulse-scale 2s ease-in-out infinite'
-              }}>
-              Made with love
-            </span>
+              </div>
+            ) : (
+              <div className="flex justify-center items-center py-2">
+                <img
+                  src={logoImg}
+                  alt="Pizzano Logo"
+                  className="h-28 md:h-40 w-auto object-contain drop-shadow-[0_0_20px_rgba(0,230,118,0.5)]"
+                  style={{ animation: 'pulse-logo 4s ease-in-out infinite' }}
+                />
+              </div>
+            )}
           </div>
           <style>{`
              @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
@@ -91,6 +105,10 @@ function App() {
              @keyframes wave {
                 0%, 100% { transform: translateY(0); }
                 50% { transform: translateY(-15px); }
+             }
+             @keyframes pulse-logo {
+                0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(0,230,118,0.3)); }
+                50% { transform: scale(1.08); filter: drop-shadow(0 0 25px rgba(0,230,118,0.6)); }
              }
              @keyframes fall-in {
                 0% { transform: translateY(-40px) scale(0.95); opacity: 0; }
