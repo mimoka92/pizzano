@@ -12,30 +12,32 @@ function App() {
   const [isLogoVisible, setIsLogoVisible] = useState(true);
 
   const handlePageChange = (newPage) => {
-    setIsTransitioning(true);
-    setIsLogoVisible(false); // Hide logo during transition
+    if (newPage === currentPage || isTransitioning) return;
 
-    // Wait for panels to fall down completely
+    setIsTransitioning(true);
+    setIsLogoVisible(false);
+
     setTimeout(() => {
       setDisplayPage(newPage);
       setCurrentPage(newPage);
       setIsTransitioning(false);
-
-      // Wait for new panels to drop in before showing logo
-      setTimeout(() => {
-        setIsLogoVisible(true);
-      }, 700);
+      setTimeout(() => setIsLogoVisible(true), 700);
     }, 1100);
   };
 
-  // Auto-Rotate every 1 minute
+  // Wall-Clock Synchronization Loop (Heartbeat Swap)
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextP = currentPage === 1 ? 2 : 1;
-      handlePageChange(nextP);
-    }, 60000); // 1 minute
+      const now = new Date();
+      // Exactly at the start of every minute, flip the page
+      if (now.getSeconds() === 0 && !isTransitioning) {
+        const nextP = currentPage === 1 ? 2 : 1;
+        handlePageChange(nextP);
+      }
+    }, 1000);
+
     return () => clearInterval(interval);
-  }, [currentPage]);
+  }, [currentPage, isTransitioning]);
 
   const redColumnItems = menuData.categories.find(c => c.title === 'BURGERS');
 
