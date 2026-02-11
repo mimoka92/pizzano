@@ -5,16 +5,18 @@ const MenuSection = ({ title, items, showHeaders = false, headers = [], compact 
     const titleColor = 'text-pizzano-green';
     const borderColor = 'border-green-700';
 
+    const headerWidthClass = headers.length > 2 ? 'w-60' : 'w-44';
+
     return (
         <div className="flex-grow flex flex-col text-white">
             <div className={`flex justify-between items-end border-b-2 mb-2 md:mb-1 ${borderColor} shrink-0`}>
                 <h2 className={`text-3xl md:text-2xl font-black uppercase tracking-tighter ${titleColor} drop-shadow-sm leading-none pb-0.5`}>
                     {title}
                 </h2>
-                {showHeaders && (
-                    <div className="flex text-xs md:text-[10px] font-bold text-white/80 w-40 justify-end pb-0.5">
+                {showHeaders && headers.length > 0 && (
+                    <div className={`flex text-xs md:text-[10px] font-bold text-white/80 ${headerWidthClass} justify-end pb-0.5`}>
                         {headers.map((h, i) => (
-                            <div key={i} className="w-14 text-right uppercase">{h === 'S' ? 'SML' : h === 'L' ? 'LRG' : h}</div>
+                            <div key={i} className="w-14 text-right uppercase tracking-wider">{h}</div>
                         ))}
                     </div>
                 )}
@@ -26,6 +28,7 @@ const MenuSection = ({ title, items, showHeaders = false, headers = [], compact 
                         key={index}
                         name={item.name}
                         price={item.price}
+                        prices={item.prices}
                         largePrice={item.largePrice}
                         priceNote={item.priceNote}
                         isTabular={showHeaders}
